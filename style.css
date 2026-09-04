@@ -1,6 +1,7 @@
 * {
     margin: 0;
-    padding: 0%;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 html {
@@ -9,17 +10,20 @@ html {
 
 :root {
     --bg: black;
-    --shadow:rgb(24, 148, 24);
-    --text_color:#077a12;
-    --after_hover:#15c924;
+    --shadow: rgb(24, 148, 24);
+    --text_color: #077a12;
+    --after_hover: #15c924;
+    --white_shade: white;
+    --book_card: rgba(24, 148, 24, 0.2);
 }
 
 header {
     background: var(--bg);
-    padding: 15px 5%;/*top bottom -left right*/
-    box-shadow: 0 2px 10px var(--shadow);
+    padding: 15px 5%;
+    box-shadow: 0 2px 15px var(--shadow);
     position: sticky;
     top: 0;
+    z-index: 100;
 }
 
 nav {
@@ -31,9 +35,8 @@ nav {
 .logo {
     font-size: 1.6rem;
     font-weight: 700;
-    color: var(--text_color);
+    color: var(--after_hover);
     letter-spacing: -0.5px;
-    margin: 0;
 }
 
 .nav-links {
@@ -45,7 +48,6 @@ nav {
     text-decoration: none;
     color: var(--text_color);
     font-weight: 500;
-    font-size: 1rem;
     transition: all 0.3s ease;
     position: relative;
 }
@@ -59,7 +61,7 @@ nav {
     position: absolute;
     width: 0;
     height: 2px;
-    background: var(--text_color);
+    background: var(--after_hover);
     bottom: -4px;
     left: 0;
     transition: width 0.3s ease;
@@ -70,86 +72,235 @@ nav {
 }
 
 .hero_section {
-    background: var(--bg);
+    position: relative;
+    width: 100%;
+    min-height: 450px;
     padding: 80px 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    box-shadow: 0 2px 20px rgba(24, 148, 24, 0.15);
-    border-bottom: 1px solid rgba(24, 148, 24, 0.2);
+    background: url(heroimage.jpeg) center/cover no-repeat;
+    isolation: isolate;
+    /* Creates boundary. So z-index:-1 in ::before doesn't disappear behind body */
+    border-bottom: 1px solid var(--book_card);
+}
+
+.hero_section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: -1;
+    /* Push this black layer behind your text but, because of isolate, it stays INSIDE hero, not behind page */
 }
 
 .hero_section h1 {
     color: var(--after_hover);
-    font-size: 42px;
+    font-size: 48px;
     font-weight: 800;
     margin-bottom: 15px;
-    letter-spacing: -1px;
-    text-shadow: 0 0 20px rgba(21, 201, 36, 0.3);
+    text-shadow: 0 0 25px var(--text_color);
 }
 
 .hero_section p {
-    color: var(--text_color);
+    color: var(--white_shade);
     font-size: 18px;
     max-width: 600px;
-    margin: 0 auto;
-    line-height: 1.6;
-    opacity: 0.9;
 }
 
-#quote{
+#quote {
     font-style: italic;
-    color: var(--after_hover);
-    margin-top: 10px;
+    color: var(--text_color);
+    margin-top: 12px;
     font-size: 16px;
-    opacity: 0.7;
 }
 
-.hero_section input{
-    margin-top: 35px;
+.search_box {
+    position: relative;
     width: 100%;
-    max-width: 500px;
-    padding: 15px 20px;
+    max-width: 550px;
+    margin-top: 35px;
+}
+
+.search_box input {
+    width: 100%;
+    padding: 16px 130px 16px 22px;
     background: var(--bg);
     border: 1px solid var(--text_color);
     border-radius: 50px;
-    color: white;
+    color: var(--white_shade);
     font-size: 16px;
     outline: none;
-    box-shadow: 0 0 0 rgba(24, 148, 24, 0);
-    transition: all 0.3s ease;
+    transition: 0.3s;
 }
 
-.hero_section input::placeholder {
+.search_box input::placeholder {
     color: var(--text_color);
     opacity: 0.6;
 }
 
-.hero_section input:focus {
+.search_box input:focus {
     border-color: var(--after_hover);
     box-shadow: 0 0 15px var(--shadow);
 }
 
-.hero_section input[type="text"]:hover {
-    border-color: var(--after_hover);
-}
-
 .search_box button {
-    padding: 15px 30px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+    padding: 0 28px;
     background: var(--text_color);
-    color: var(--bg);
-    border: 1px solid var(--text_color);
+    color: var(--white_shade);
+    border: none;
     border-radius: 50px;
-    font-size: 16px;
     font-weight: 600;
     cursor: pointer;
     transition: 0.3s;
 }
+
 .search_box button:hover {
     background: var(--after_hover);
-    border-color: var(--after_hover);
     box-shadow: 0 0 15px var(--shadow);
 }
 
-/* Responsive for mobile */
+.featured-books {
+    padding: 70px 5%;
+    background: var(--bg);
+    text-align: center;
+}
+
+.featured-books h2 {
+    color: var(--after_hover);
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.section-description {
+    color: var(--text_color);
+    opacity: 0.8;
+    font-size: 16px;
+    margin-bottom: 40px;
+}
+
+.book-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    /*repeat that logic for all cards automatically fit as many cards as possible in one row based on that, min sizeminmax(260px, 1fr)
+    = each card can be minimum 260px wide, maximum 1fr (take all free space)*/
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.book-card {
+    background: var(--bg);
+    border: 1px solid var(--book_card);
+    border-radius: 16px;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.book-card:hover {
+    border-color: var(--text_color);
+    box-shadow: 0 0 20px var(--book_card);
+    transform: translateY(-6px);
+}
+
+.book-card img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+.book-card h3 {
+    color: var(--white_shade);
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.book-card .author {
+    color: var(--text_color);
+    font-size: 14px;
+    margin-bottom: 18px;
+    opacity: 0.8;
+}
+
+.save-btn,
+.fav-btn {
+    width: 100%;
+    padding: 10px;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 8px;
+}
+
+.save-btn {
+    background: var(--text_color);
+    color: var(--white_shade);
+    border: 1px solid var(--text_color);
+}
+
+.save-btn:hover {
+    background: var(--after_hover);
+    box-shadow: 0 0 12px var(--shadow);
+}
+
+.fav-btn {
+    background: transparent;
+    color: var(--text_color);
+    border: 1px solid var(--text_color);
+}
+
+.fav-btn:hover {
+    background: var(--book_card);
+    color: var(--after_hover);
+    border-color: var(--after_hover);
+}
+
+footer {
+    background: var(--bg);
+    color: var(--white_shade);
+    padding: 50px;
+    box-shadow: 0 -3px 15px var(--shadow);
+}
+
+.footer-section h2 {
+    color: var(--text_color);
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
+.footer-section h3 {
+    color: var(--text_color);
+    font-size: 19px;
+    margin-bottom: 18px;
+}
+
+.footer-section p {
+    color: var(--white_shade);
+    margin-bottom: 10px;
+}
+
+.footer-bottom {
+    margin: 40px auto auto 0;
+    padding-top: 20px;
+    text-align: center;
+    border-top: 1px solid var(--text_color);
+}
+
+.footer-bottom p {
+    color: var(--white_shade);
+    font-size: 14px;
+}
+
 @media (max-width: 700px) {
     nav {
         flex-direction: column;
@@ -160,5 +311,10 @@ nav {
         gap: 16px;
         flex-wrap: wrap;
         justify-content: center;
+    }
+
+    .hero_section {
+        min-height: 400px;
+        padding: 60px 5%;
     }
 }
