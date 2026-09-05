@@ -7,21 +7,6 @@
     <title>Digital Library</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
-<body>
-    <header>
-        <nav>
-            <h1 class="logo">Digital Library</h1>
-            <div class="nav-links">
-                <a href="#home">Home</a>
-                <a href="<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Favourites</title>
-    <link rel="stylesheet" href="style.css">
-</head>
 <body>
     <header>
         <nav>
@@ -34,31 +19,13 @@
             </div>
         </nav>
     </header>
-    <section class="favourites-section">
-        <h2>My Favourites</h2>
-        <p class="section-description">
-            Here are the books you've added to your favourites.
-        </p>
-        <div class="favourites-container" id="favouritesContainer">
-            
-        </div>
-    </section>
-
-    <script src="script.js"></script>
-</body>
-</html>">My Library</a>
-                <a href="Favourites.html">Favourites</a>
-                <a href="#search">Search</a>
-            </div>
-        </nav>
-    </header>
     <section>
         <div class="hero_section">
             <h1>Welcome to the Digital Library</h1>
             <p>Explore a vast collection of books, articles, and resources at your fingertips.</p>
             <br>
             <p id="quote">Books are uniquely portable magic.</p>
-            <div class="search_box">
+            <div class="search_box" id="search">
                 <input type="text" placeholder="Search books...">
                 <button>Search</button>
             </div>
@@ -69,33 +36,7 @@
         <p class="section-description">
             Discover some popular books from our collection.
         </p>
-        <div class="book-container">
-            <div class="book-card">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKbFxR97Mk6RebAHAdSM_gfgJQ99XHZmbM8q18Vzk1_w&s=10"
-                    alt="The Book of Boor">
-                <h3>The Book of Boor</h3>
-                <p class="author">Gareth Brown</p>
-                <button class="save-btn"> Add to Library</button>
-                <button class="fav-btn"> Add to Favourites</button>
-            </div>
-
-            <div class="book-card">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhpU0sUENHK7McEv9RK31Rn8e9szbp4hTmigNVLnIu3w&s=10"
-                    alt="Whispering Mountains">
-                <h3>Whispering Mountains</h3>
-                <p class="author">John Aiken</p>
-                <button class="save-btn"> Add to Library</button>
-                <button class="fav-btn"> Add to Favourites</button>
-            </div>
-
-            <div class="book-card">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSoF32vn8tlifdUrhbD1aj_GqwvEV3NVO1b2o3FyBXrw&s=10"
-                    alt="Three Men in a Boat">
-                <h3>Three Men in a Boat</h3>
-                <p class="author">Jerome K. Jerome</p>
-                <button class="save-btn"> Add to Library</button>
-                <button class="fav-btn"> Add to Favourites</button>
-            </div>
+        <div class="book-container" id="bookContainer">
         </div>
     </section>
     <footer>
@@ -111,6 +52,7 @@
             <p>Digital Library | Made with for book lovers</p>
         </div>
     </footer>
+    <script src="script.js"></script>
 </body>
 
 </html>
